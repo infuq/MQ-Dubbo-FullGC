@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+        xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+        xsi:schemaLocation="
+    	http://www.springframework.org/schema/beans  
+        http://www.springframework.org/schema/beans/spring-beans.xsd  
+        http://code.alibabatech.com/schema/dubbo  
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+
+    <dubbo:application name="infuq-java" />
+    <dubbo:registry protocol="zookeeper" address="127.0.0.1:2181" check="false" />
+    <dubbo:protocol name="dubbo" port="20880" threads="200" />
+
+    <dubbo:reference id="queryUserInfoFacade" interface="com.infuq.facade.QueryUserInfoFacade" version="1.0.0" check="false"/>
+
+
+
+
+
+    <!--
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath*:properties/db.properties</value>
+                <value>classpath*:properties/redis.properties</value>
+                <value>classpath*:properties/mq.properties</value>
+                <value>classpath*:properties/threadPool.properties</value>
+                <value>classpath*:properties/zookeeper.properties</value>
+            </list>
+        </property>
+        <property name="ignoreUnresolvablePlaceholders" value="true" />
+    </bean>
+
+    <import resource="DubboConsumer.xml" />
+
+    -->
+
+    <!-- 导入外部的properties配置文件
+    <context:property-placeholder location="classpath:properties/application.properties" />
+    -->
+
+
+</beans>

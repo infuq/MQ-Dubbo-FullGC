@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-4.2.xsd
+            http://code.alibabatech.com/schema/dubbo
+            http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+
+    <dubbo:application name="infuq-java" />
+    <dubbo:registry protocol="zookeeper" address="127.0.0.1:2181" check="false" />
+    <dubbo:protocol name="dubbo" port="20880" threads="200" host="127.0.0.1"/><!-- telnet 127.0.0.1 20880 -->
+
+    <dubbo:service ref="queryUserInfoFacade" interface="com.infuq.facade.QueryUserInfoFacade" version="1.0.0" timeout="5000"/>
+    <bean id="queryUserInfoFacade" class="com.infuq.facade.impl.QueryUserInfoFacadeImpl" />
+
+
+    <!--自动扫描与装配-->
+    <context:component-scan base-package="com.infuq.**" />
+
+
+
+
+
+
+
+
+
+    <!-- 导入外部的properties配置文件
+    <context:property-placeholder location="classpath:properties/application.properties" />
+    -->
+
+    <!--
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath*:properties/zookeeper.properties</value>
+            </list>
+        </property>
+        <property name="ignoreUnresolvablePlaceholders" value="true" />
+    </bean>
+    -->
+
+
+</beans>

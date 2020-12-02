@@ -25,10 +25,6 @@ public class MQProducer {
                         ("Hello RocketMQ " + i).getBytes(RemotingHelper.DEFAULT_CHARSET) /* Message body */
                 );
                 SendResult sendResult = producer.send(msg);
-
-//                System.out.printf("%s%n", sendResult);
-
-//                Thread.sleep(100);
             } catch (Exception e) {
                 e.printStackTrace();
                 Thread.sleep(1000);

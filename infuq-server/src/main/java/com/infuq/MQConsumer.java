@@ -33,18 +33,10 @@ public class MQConsumer {
             public ConsumeConcurrentlyStatus consumeMessage(List<MessageExt> msgs, ConsumeConcurrentlyContext context) {
 
                 for (MessageExt x : msgs) {
-//                    System.out.println("[MQ消费者]:" + Thread.currentThread().getName() + "消费消息. msgId=" + x.getMsgId());
-
                     try {
-
-//                        byte[] tmp = new byte[2 * 1024 * 1024];
-
                         Object ret = queryUserInfoFacade.update("hangzhou");
-//                        System.out.println("Dubbo接口调用返回值:" + ret);
                     } catch (Throwable _x) {
-//                        System.out.println("Dubbo接口调用异常" + _x);
                     }
-
                 }
 
                 return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
